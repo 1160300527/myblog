@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from . import models
+
+
 # Create your views here.
 
 
@@ -13,13 +15,24 @@ def article_page(request, article_id):
     return render(request, 'blog/article_page.html', {'article': article})
 
 
-def artitle_change(request):
-    return render(request, 'blog/add_page.html')
+def article_change(request, article_id):
+    if str(article_id) == '0':
+        return render(request, 'blog/add_page.html')
+    else:
+        article = models.Article.objects.get(pk=article_id)
+        return render(request, 'blog/add_page.html', {'article': article})
 
 
 def edt_action(request):
-    title = request.POST['title']
-    content = request.POST['content']
-    models.Article.objects.create(title=title, content=content)
+    title = request.POST.get('title', 'TITLE')
+    content = request.POST.get('content', 'CONTENT')
+    article_id = request.POST.get('article_id', '0')
+    if str(article_id) == '0':
+        models.Article.objects.create(title=title, content=content)
+    else:
+        article = models.Article.objects.get(pk=article_id)
+        article.title = title
+        article.content = content
+        article.save()
     articles = models.Article.objects.all()
     return render(request, 'blog/index.html', {'articles': articles})

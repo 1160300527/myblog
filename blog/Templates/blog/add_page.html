@@ -5,12 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<form action="{% url 'blog:edt_action'  %}" method="post">
+<form action="{% url 'blog:edt_action' %}" method="post">
     {% csrf_token %}
-    <label>New Title
-        <input type="text" name="title"/>
-    </label>
-    <textarea rows="10" cols="30" placeholder="Please input the new article" name="content"></textarea>
+    {% if article %}
+        <input type="hidden" name="article_id" value="{{ article.id }}"/>
+        <label>New Title
+            <input type="text" name="title" value="{{ article.title }}"/>
+        </label>
+        <textarea rows="10" cols="30" name="content">{{ article.content }}</textarea>
+    {% else %}
+        <label>New Title
+            <input type="text" name="title"/>
+        </label>
+        <textarea rows="10" cols="30" placeholder="Please input the new article" name="content"></textarea>
+    {% endif %}
     <input type="submit" value="提交"/>
     <input type="reset" value="重置"/>
 </form>
