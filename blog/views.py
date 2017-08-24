@@ -26,6 +26,7 @@ def article_change(request, article_id):
 def edt_action(request):
     title = request.POST.get('title', 'TITLE')
     content = request.POST.get('content', 'CONTENT')
+    time = request.POST.get('time', 'TIME')
     article_id = request.POST.get('article_id', '0')
     try:
         article = models.Article.objects.get(title=title)
@@ -34,7 +35,7 @@ def edt_action(request):
         exist = False
     if not exist or (article_id != 0 and str(article.id) == str(article_id)):
         if str(article_id) == '0':
-            models.Article.objects.create(title=title, content=content)
+            models.Article.objects.create(title=title, content=content,time=time)
         else:
             article = models.Article.objects.get(pk=article_id)
             article.title = title
@@ -47,4 +48,4 @@ def edt_action(request):
         if str(article_id) == '0':
             return render(request, 'blog/add_page.html', {'Alert': alert})
         else:
-            return render(request, 'blog/add_page.html', {'Alert':alert, 'article': models.Article.objects.get(pk=article_id)})
+            return render(request, 'blog/add_page.html', {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
