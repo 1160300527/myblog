@@ -43,5 +43,8 @@ def edt_action(request):
         articles = models.Article.objects.all()
         return render(request, 'blog/index.html', {'articles': articles})
     else:
-        alert = "重复"
-        return render(request, 'blog/add_page.html', {'Alert': alert})
+        alert = "warning"
+        if article_id == 0:
+            return render(request, 'blog/add_page.html', {'Alert': alert})
+        else:
+            return render(request, 'blog/add_page.html', {'Alert':alert, 'article': models.Article.objects.get(pk=article_id)})

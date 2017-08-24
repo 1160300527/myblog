@@ -26,12 +26,11 @@
             <input type="reset" value="重置" class="btn btn-default button"/>
         </div>
     </form>
-    <script type="text/javascript">
-        if({{ Alert }})
-        {
-            alert("警告")
-        }
-    </script>
 </div>
 </body>
+<script type="text/javascript">
+    if ("{{ Alert|safe }}" === "warning") {
+        alert("该标题已存在！")
+    }
+</script>
 </html>
