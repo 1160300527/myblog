@@ -9,9 +9,12 @@ body{
 label{
     font-family:华文新魏;
     font-size: large;
-    color: #e5fff3;
+    color: #dee2ff;
     position: relative;
     right:13%;
+}
+input[type=text]{
+    color: #0f0f0f;
 }
 input[type=text],textarea{
     border-radius:3px;
