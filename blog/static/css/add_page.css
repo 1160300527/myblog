@@ -1,0 +1,36 @@
+{% load staticfiles %}
+h1{
+    font-family: 华文行楷;
+    color: #e7ffdd;
+}
+body{
+    background: url("img/add_img.jpg"),no-repeat,fixed;
+}
+label{
+    font-family:华文新魏;
+    font-size: large;
+    color: #e5fff3;
+    position: relative;
+    right:13%;
+}
+input[type=text],textarea{
+    border-radius:3px;
+    border:1px solid #e5fff3;
+    resize: none;
+}
+textarea{
+    position: relative;
+    top: 30px;
+}
+#all{
+    position: relative;
+    top: 60px;
+}
+.button{
+    position: relative;
+    weidth:5%;
+    left: 17%;
+    background-color: #9affbe;
+    position: relative;
+    top: 50px;
+}

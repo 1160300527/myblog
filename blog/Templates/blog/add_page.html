@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/add_page.css' %}" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form action="{% url 'blog:edt_action' %}" method="post">
-    {% csrf_token %}
-    {% if article %}
-        <input type="hidden" name="article_id" value="{{ article.id }}"/>
-        <label>New Title
-            <input type="text" name="title" value="{{ article.title }}"/>
-        </label>
-        <textarea rows="10" cols="30" name="content">{{ article.content }}</textarea>
-    {% else %}
-        <label>New Title
-            <input type="text" name="title"/>
-        </label>
-        <textarea rows="10" cols="30" placeholder="Please input the new article" name="content"></textarea>
-    {% endif %}
-    <input type="submit" value="提交"/>
-    <input type="reset" value="重置"/>
-</form>
+<h1 class="text-center">文章</h1>
+<div id="all">
+    <form action="{% url 'blog:edt_action' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="article_id" value="{{ article.id|default:'0' }}"/>
+        <div id="article" class="text-center">
+            <div id="title">
+                <label>标题
+                    <input type="text" name="title" value="{{ article.title }}" class=""/>
+                </label>
+            </div>
+            <div id="content">
+                <textarea rows="20" cols="80" name="content" placeholder="请在此输入文章内容">{{ article.content }}</textarea>
+            </div>
+            <input type="submit" value="提交" class="btn btn-default button"/>
+            <input type="reset" value="重置" class="btn btn-default button"/>
+        </div>
+    </form>
+</div>
 </body>
 </html>
