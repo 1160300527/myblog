@@ -27,12 +27,21 @@ def edt_action(request):
     title = request.POST.get('title', 'TITLE')
     content = request.POST.get('content', 'CONTENT')
     article_id = request.POST.get('article_id', '0')
-    if str(article_id) == '0':
-        models.Article.objects.create(title=title, content=content)
+    try:
+        article = models.Article.objects.get(title=title)
+        exist = True
+    except:
+        exist = False
+    if not exist or (article_id != 0 and str(article.id) == str(article_id)):
+        if str(article_id) == '0':
+            models.Article.objects.create(title=title, content=content)
+        else:
+            article = models.Article.objects.get(pk=article_id)
+            article.title = title
+            article.content = content
+            article.save()
+        articles = models.Article.objects.all()
+        return render(request, 'blog/index.html', {'articles': articles})
     else:
-        article = models.Article.objects.get(pk=article_id)
-        article.title = title
-        article.content = content
-        article.save()
-    articles = models.Article.objects.all()
-    return render(request, 'blog/index.html', {'articles': articles})
+        alert = "重复"
+        return render(request, 'blog/add_page.html', {'Alert': alert})
