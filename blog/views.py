@@ -44,7 +44,7 @@ def edt_action(request):
         return render(request, 'blog/index.html', {'articles': articles})
     else:
         alert = "warning"
-        if article_id == 0:
+        if str(article_id) == '0':
             return render(request, 'blog/add_page.html', {'Alert': alert})
         else:
             return render(request, 'blog/add_page.html', {'Alert':alert, 'article': models.Article.objects.get(pk=article_id)})
