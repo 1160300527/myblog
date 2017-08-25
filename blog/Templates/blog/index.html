@@ -17,8 +17,8 @@
     </tr>
     {% for article in articles %}
     <tr>
-        <td>{{ article.title }}</td>
         <td><a href="{% url 'blog:article_page' article_id=article.id  %}">{{ article.title }}</a></td>
+        <td>{{ article.time }}</td>
     </tr>
     </tbody>
     {% endfor %}

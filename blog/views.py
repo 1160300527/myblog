@@ -41,12 +41,14 @@ def edt_action(request):
             if request.session["Post"] == "allow":
                 models.Article.objects.create(title=title, content=content, time=time)
                 request.session["Post"] = "disable"
+            return render(request, 'blog/add_page.html', {'Alert': alert})
         else:
             article = models.Article.objects.get(pk=article_id)
             article.title = title
             article.content = content
+            article.time = time
             article.save()
-        return redirect('/index/')
+            return render(request, 'blog/add_page.html', {'Alert': alert, 'article': article})
     else:
         alert = "warning"
         if str(article_id) == '0':

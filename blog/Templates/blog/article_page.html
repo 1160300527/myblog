@@ -13,8 +13,10 @@
     <h1 id="article_title" class="text-center">{{ article.title }}</h1>
     <textarea cols="120" rows="25" id="article_content" readonly>{{ article.content }}</textarea>
 </div>
-<input type="button" id="change" onclick="change({{ article.id }})" class="btn btn-default" value="修改此文章"/>
-<input type="button" id="delete" onclick="remove({{ article.id }})" class="btn btn-default" value="删除此文章"/>
+<div class="text-center">
+<input type="button" id="change" onclick="change({{ article.id }})" class="btn btn-default button" value="修改此文章"/>
+<input type="button" id="delete" onclick="remove({{ article.id }})" class="btn btn-default button" value="删除此文章"/>
+</div>
 </body>
 <script src="{% static 'js/article_page.js' %}"></script>
 </html>
