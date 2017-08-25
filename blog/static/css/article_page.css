@@ -1,5 +1,6 @@
 body{
     background: url("img/add_img.jpg"),no-repeat,fixed;
+    background-size: cover;
 }
 #article_title{
     background-color: #2aabd2;

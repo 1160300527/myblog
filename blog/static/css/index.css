@@ -1,3 +1,4 @@
 body{
     background: url("img/add_img.jpg"),no-repeat,fixed;
+    background-size: cover;
 }

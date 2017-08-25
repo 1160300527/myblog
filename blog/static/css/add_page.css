@@ -4,6 +4,7 @@ h1{
 }
 body{
     background: url("img/add_img.jpg"),no-repeat,fixed;
+    background-size: cover;
 }
 label{
     font-family:华文新魏;
@@ -22,11 +23,11 @@ input[type=text],textarea{
 }
 textarea{
     position: relative;
-    top: 30px;
+    top: 20px;
 }
 #all{
     position: relative;
-    top: 60px;
+    top: 50px;
 }
 .button{
     position: relative;
@@ -34,5 +35,13 @@ textarea{
     left: 17%;
     background-color: #9affbe;
     position: relative;
-    top: 50px;
+    top: 38px;
+}
+#index{
+    width: 20%;
+    position: relative;
+    bottom: 10px;
+    left: 29%;
+    font-size: large;
+    color: #818a97;
 }
