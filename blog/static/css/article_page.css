@@ -15,11 +15,12 @@ body{
 #article_content{
     position: relative;
     left: 18%;
-    border-radius:10px;
+    border-radius:5px;
     border:1px solid #e5fff3;
     resize: none;
 }
-#change{
-    position: relative;
-    top: 50%;
+#index{
+    width: 20%;
+    font-size: large;
+    color: #818a97;
 }

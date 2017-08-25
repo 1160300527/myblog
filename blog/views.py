@@ -56,3 +56,9 @@ def edt_action(request):
                 return render(request, 'blog/index.html', {'articles': models.Article.objects.all()})
         else:
             return render(request, 'blog/add_page.html', {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
+
+
+def delete(request, article_id):
+    models.Article.objects.filter(pk=article_id).delete()
+    articles = models.Article.objects.all()
+    return redirect('/index/')
