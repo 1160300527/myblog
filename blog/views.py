@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import models
 
 
@@ -16,8 +16,9 @@ def article_page(request, article_id):
 
 
 def article_change(request, article_id):
+    request.session['alert'] = "no_warning"
     if str(article_id) == '0':
-        return render(request, 'blog/add_page.html')
+        return render(request, 'blog/add_page.html').set_cookie("postToken", value="allow")
     else:
         article = models.Article.objects.get(pk=article_id)
         return render(request, 'blog/add_page.html', {'article': article})
@@ -34,6 +35,7 @@ def edt_action(request):
     except:
         exist = False
     if not exist or (article_id != 0 and str(article.id) == str(article_id)):
+        request.session["alert"] = "Yes"
         if str(article_id) == '0':
             models.Article.objects.create(title=title, content=content,time=time)
         else:
@@ -42,10 +44,13 @@ def edt_action(request):
             article.content = content
             article.save()
         articles = models.Article.objects.all()
-        return render(request, 'blog/index.html', {'articles': articles})
+        if request.COOKIES["postToken"] == "allow":
+            return render(request, 'blog/index.html', {'articles': articles}).set_cookie("postToken",value="disable")
     else:
+        request.session['alert'] = "warning"
         alert = "warning"
         if str(article_id) == '0':
             return render(request, 'blog/add_page.html', {'Alert': alert})
         else:
+            return redirect("/index/edt/"+article_id+"/")
             return render(request, 'blog/add_page.html', {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})

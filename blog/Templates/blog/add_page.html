@@ -31,7 +31,7 @@
 </body>
 <script type="text/javascript">
     if ("{{ Alert|safe }}" === "warning") {
-        alert("该标题已存在！")
+        alert("该标题已存在！");
     }
     Date.prototype.Format = function (fmt) { //author: meizz
         var o = {
@@ -50,7 +50,7 @@
                 fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
     }
-    mydate = new Date()
-    document.getElementById("Time").innerHTML = mydate.Format('yyyy-MM-dd hh:mm:ss')
+    mydate = new Date();
+    document.getElementById("Time").innerHTML = mydate.Format('yyyy-MM-dd hh:mm:ss');
 </script>
 </html>
