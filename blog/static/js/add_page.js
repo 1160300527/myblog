@@ -1,8 +1,10 @@
 /**
  * Created by Administrator on 2017/8/25.
  */
-if ("{{ Alert|safe }}" === "warning") {
-    alert("该标题已存在！");
+if (document.getElementById("warning").value === "warning") {
+    alert("该题目已存在");
+    document.getElementById("warning").innerHTML ="Yes"
+    window.location.href=('/index/edt/'+document.getElementById("id").value+'/');
 }
 Date.prototype.Format = function (fmt) { //author: meizz
     var o = {

@@ -25,6 +25,7 @@ def article_change(request, article_id):
 
 
 def edt_action(request):
+    alert = "yes"
     title = request.POST.get('title', 'TITLE')
     content = request.POST.get('content', 'CONTENT')
     time = request.POST.get('time', 'TIME')
@@ -45,20 +46,20 @@ def edt_action(request):
             article.title = title
             article.content = content
             article.save()
-        articles = models.Article.objects.all()
-        return render(request, 'blog/index.html', {'articles': articles})
+        return redirect('/index/')
     else:
         alert = "warning"
         if str(article_id) == '0':
             if request.session["Post"] == "allow":
+                request.session['Post'] = "disable"
                 return render(request, 'blog/add_page.html', {'Alert': alert})
             else:
-                return render(request, 'blog/index.html', {'articles': models.Article.objects.all()})
+                return redirect('/index/edt/0/')
         else:
+            request.session['Post'] = "disable"
             return render(request, 'blog/add_page.html', {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
 
 
 def delete(request, article_id):
     models.Article.objects.filter(pk=article_id).delete()
-    articles = models.Article.objects.all()
     return redirect('/index/')
