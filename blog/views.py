@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from . import models
 
 
@@ -17,7 +17,6 @@ def article_page(request, article_id):
 
 def article_change(request, article_id):
     if str(article_id) == '0':
-        request.session["Post"] = "allow"
         return render(request, 'blog/add_page.html')
     else:
         article = models.Article.objects.get(pk=article_id)
@@ -36,11 +35,8 @@ def edt_action(request):
     except:
         exist = False
     if not exist or (article_id != 0 and str(article.id) == str(article_id)):
-        request.session["alert"] = "Yes"
         if str(article_id) == '0':
-            if request.session["Post"] == "allow":
-                models.Article.objects.create(title=title, content=content, time=time)
-                request.session["Post"] = "disable"
+            models.Article.objects.create(title=title, content=content, time=time)
             return render(request, 'blog/add_page.html', {'Alert': alert})
         else:
             article = models.Article.objects.get(pk=article_id)
@@ -52,14 +48,10 @@ def edt_action(request):
     else:
         alert = "warning"
         if str(article_id) == '0':
-            if request.session["Post"] == "allow":
-                request.session['Post'] = "disable"
-                return render(request, 'blog/add_page.html', {'Alert': alert})
-            else:
-                return redirect('/index/edt/0/')
+            return render(request, 'blog/add_page.html', {'Alert': alert})
         else:
-            request.session['Post'] = "disable"
-            return render(request, 'blog/add_page.html', {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
+            return render(request, 'blog/add_page.html',
+                          {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
 
 
 def delete(request, article_id):
