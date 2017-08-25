@@ -16,9 +16,9 @@ def article_page(request, article_id):
 
 
 def article_change(request, article_id):
-    request.session['alert'] = "no_warning"
     if str(article_id) == '0':
-        return render(request, 'blog/add_page.html').set_cookie("postToken", value="allow")
+        request.session["Post"] = "allow"
+        return render(request, 'blog/add_page.html')
     else:
         article = models.Article.objects.get(pk=article_id)
         return render(request, 'blog/add_page.html', {'article': article})
@@ -37,20 +37,22 @@ def edt_action(request):
     if not exist or (article_id != 0 and str(article.id) == str(article_id)):
         request.session["alert"] = "Yes"
         if str(article_id) == '0':
-            models.Article.objects.create(title=title, content=content,time=time)
+            if request.session["Post"] == "allow":
+                models.Article.objects.create(title=title, content=content, time=time)
+                request.session["Post"] = "disable"
         else:
             article = models.Article.objects.get(pk=article_id)
             article.title = title
             article.content = content
             article.save()
         articles = models.Article.objects.all()
-        if request.COOKIES["postToken"] == "allow":
-            return render(request, 'blog/index.html', {'articles': articles}).set_cookie("postToken",value="disable")
+        return render(request, 'blog/index.html', {'articles': articles})
     else:
-        request.session['alert'] = "warning"
         alert = "warning"
         if str(article_id) == '0':
-            return render(request, 'blog/add_page.html', {'Alert': alert})
+            if request.session["Post"] == "allow":
+                return render(request, 'blog/add_page.html', {'Alert': alert})
+            else:
+                return render(request, 'blog/index.html', {'articles': models.Article.objects.all()})
         else:
-            return redirect("/index/edt/"+article_id+"/")
             return render(request, 'blog/add_page.html', {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
