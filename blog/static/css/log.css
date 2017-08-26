@@ -10,7 +10,6 @@ label{
 input[type=text],input[type=password]{
     border-radius:2px;
     border:1px solid #e5fff3;
-    resize: none;
 }
 #back{
 	position: absolute;
@@ -44,7 +43,7 @@ input[type=text],input[type=password]{
 	width:90%;
 	height:30px;
 	position:relative;
-	right:55%;
+	right:75%;
 	opacity: 0.8;
 }
 .dis{
@@ -85,7 +84,6 @@ h1{
 	opacity: 0.7;
 }
 .sign{
-	text-decoration: visible;
 	/*
 	visible:默认值。内容不会被修剪，会呈现在元素框之外。;
 	hidden:内容会被修剪，并且其余内容是不可见的。;
@@ -93,8 +91,8 @@ h1{
 	auto:如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。;
 	inherit:规定应该从父元素继承 overflow 属性的值。;
 	 */
-	background: #2F99F5;
-	border:1px solid #2F99F5;
+	background: #3b474f;
+	border:1px solid #808588;
 	color:white;
 	float:left;
 	height:30px;

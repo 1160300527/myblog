@@ -31,10 +31,9 @@ textarea{
 }
 .button{
     position: relative;
-    weidth:5%;
-    left: 17%;
+    width:5%;
+    left: 13%;
     background-color: #9affbe;
-    position: relative;
     top: 38px;
 }
 #index{
