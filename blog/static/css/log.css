@@ -1,0 +1,121 @@
+body{
+    background: url("img/add_img.jpg"), no-repeat,fixed;
+    background-size: cover;
+}
+label{
+	float:left;
+	position:relative;
+	right:100px;
+}
+input[type=text],input[type=password]{
+    border-radius:2px;
+    border:1px solid #e5fff3;
+    resize: none;
+}
+#back{
+	position: absolute;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	float:left;
+}
+#formb{
+	color:white;
+	font-size:25px;
+	/*font-weight:bold;*/
+	/*background:#B25E1F;*/
+	width:100%;
+	height:100px;
+	position:absolute;
+	top:200px;
+	left:300px;
+	/*right:50px;*/
+	opacity: 0.9;
+	/*filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity: 0.5*/
+	text-align:center;
+}
+#tabup{
+	width:100%;
+}
+.tx1,.tx2{
+	width:90%;
+	height:30px;
+	position:relative;
+	right:55%;
+	opacity: 0.8;
+}
+.dis{
+	display:none;
+}
+#dis{
+	display:none;
+}
+.bu{
+	width:200px;
+	height:30px;
+	background:#484240;
+	border:1px solid #827067;
+	font-size:20px;
+	color:white;
+}
+#subm{
+	position:relative;
+	right:30px;
+}
+#rese{
+	position:relative;
+	right:300px;
+}
+.bu:hover{
+	border:1px solid #484240;
+	background:#827067;
+}
+h1{
+	font-family:华文彩云;
+	/*font-family:华文行楷;*/
+	text-align: center;
+	color:white;
+	font-size:50px;
+	position:absolute;
+	top:-5%;
+	width:100%;
+	opacity: 0.7;
+}
+.sign{
+	text-decoration: visible;
+	/*
+	visible:默认值。内容不会被修剪，会呈现在元素框之外。;
+	hidden:内容会被修剪，并且其余内容是不可见的。;
+	scorll:内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容;
+	auto:如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。;
+	inherit:规定应该从父元素继承 overflow 属性的值。;
+	 */
+	background: #2F99F5;
+	border:1px solid #2F99F5;
+	color:white;
+	float:left;
+	height:30px;
+	width:23.2%;
+	position:relative;
+	left:165px;
+	opacity:0.7;
+    border-radius: 3px;
+}
+ul{
+	list-style-type:none;
+}
+img{
+	height:100%;
+	width:100%;
+	float:left;
+}
+.sign:hover{
+	background: #090809;
+	border:1px solid #060609;
+}
+.sign:active{
+	background:#041E35;
+}

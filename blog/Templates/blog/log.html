@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+     {% load staticfiles %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>表单</title>
+    <link href="{% static 'css/log.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static 'js/log.js' %}"></script>
+</head>
+<body>
+<div id="back">
+    <h1>Let's begin the battle</h1>
+    <div id="formb">
+        <ul>
+            <li>
+                <input type="button" class="sign" id="signin" value="Sign in" onclick="signin()"/>
+            </li>
+            <li>
+                <input type="button" class="sign" id="signup" value="Sign up" onclick="signup()"/>
+            </li>
+        </ul>
+        <form action="save.php" method="post" id="myform">
+            <table id="tabup">
+                <tbody>
+                <tr>
+                    <td><label for="txtname">UserName：</label></td>
+                    <td><input type="text" id="txtname" placeholder="字母和数字为首,不带有空格" class="tx1"/></td>
+                </tr>
+                <tr>
+                    <td><label for="txtpass">PassWord：</label></td>
+                    <td><input type="password" id="txtpass" placeholder="数字,大小写字母开头" class="tx1"/></td>
+                </tr>
+                <tr class="dis">
+                    <td><label for="Email">E-mail：</label></td>
+                    <td><input type="text" id="email" placeholder="Enter email" class="tx2"/></td>
+                </tr>
+                <tr class="dis">
+                    <td><label for="phone">Phone：</label></td>
+                    <td><input type="text" id="phone" placeholder="PhoneNumber:86+" class="tx2"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" onclick="con()" value="确认" class="bu" id="subm"/>
+                    </td>
+                    <td>
+                        <input type="reset" value="重置" class="bu" id="rese"/>
+                    </td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>

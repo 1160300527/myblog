@@ -57,3 +57,7 @@ def edt_action(request):
 def delete(request, article_id):
     models.Article.objects.filter(pk=article_id).delete()
     return redirect('/index/')
+
+
+def log(request):
+    return render(request, 'blog/log.html')
