@@ -60,9 +60,14 @@ input[type=text],input[type=password]{
 	font-size:20px;
 	color:white;
 }
-#subm{
+#submit{
 	position:relative;
 	right:30px;
+}
+#index{
+    width: 20%;
+    font-size: large;
+    color: #818a97;
 }
 #rese{
 	position:relative;
@@ -116,4 +121,12 @@ img{
 }
 .sign:active{
 	background:#041E35;
+}
+#index{
+	position: absolute;
+	text-decoration: none;
+	top:8%;
+}
+#index:hover{
+	text-decoration: underline;
 }

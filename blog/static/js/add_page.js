@@ -26,7 +26,7 @@ else if(warning=="yes"){
         return fmt;
     }
     var date = new Date();
-    document.getElementById("Time").innerHTML = date.Format('yyyy-MM-dd hh:mm:ss');
-    alert(date);
+    document.getElementById("Time").value = date.Format('yyyy-MM-dd hh:mm:ss');
+    alert("提交时间:"+date.Format('yyyy-MM-dd hh:mm:ss'));
     window.location.href=('/index/');
 }

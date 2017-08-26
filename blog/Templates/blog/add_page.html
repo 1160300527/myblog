@@ -25,9 +25,9 @@
             </div>
             <input type="submit" value="提交" class="btn btn-default button" onclick="submit()"/>
             <input type="reset" value="重置" class="btn btn-default button"/>
-            <input type="hidden" name="time" id="Time"/>
             <input type="hidden" id="warning" value="{{ Alert }}"/>
             <input type="hidden" id="id" value="{{ article.id|default:'0' }}"/>
+            <p name="time" id="Time">{{ article.time }}</p>
         </div>
     </form>
 </div>

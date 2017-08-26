@@ -28,3 +28,7 @@ body{
 .button{
     position: relative;
 }
+#time{
+    color: #9bb49c;
+    font-size: large;
+}

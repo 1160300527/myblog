@@ -114,7 +114,7 @@
  	}
  	var sign1=document.getElementById("signin");
  	var sign2=document.getElementById("signup");
- 	sign2.style.background="#2F99F5";
+ 	sign2.style.background="#3b474f";
  	sign1.style.background="#2C3A46";
  }
  function signup()
@@ -126,6 +126,6 @@
  	}
  	var sign1=document.getElementById("signin");
  	var sign2=document.getElementById("signup");
- 	sign1.style.background="#2F99F5";
+ 	sign1.style.background="#3b474f";
  	sign2.style.background="#2C3A46";
  }
