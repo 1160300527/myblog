@@ -3,7 +3,6 @@
  */
 var checked="in";
 function con() {
-    alert(checked);
     var i, flagW = 0, flagw = 0, flagd = 0;
     /*注:document.getElementById().value得到的均为字符串类型，可用parseInt()解析返回整型*/
     var thisname = new Array(32);
@@ -48,7 +47,7 @@ function con() {
         alert("密码必须同时包含大小写字母及数字");
         return;
     }
-    if (checked == "up") {
+    if (checked === "up") {
         var thisemail = new Array(64);
         thisemail = document.getElementById("email").value;
         var thisphone = new Array(32);
