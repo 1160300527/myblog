@@ -70,6 +70,7 @@ def log_action(request):
 
 
 def login(request):
+
     name = request.POST.get('name', None)
     password = request.POST.get('password', None)
     user = models.User.objects.filter(name=name)
@@ -86,3 +87,4 @@ def signup(request):
     phone = request.POST.get('phone', None)
     models.User.objects.create(name=name, password=password, email=email, phone=phone)
     return render(request, 'blog/alert.html', {'alert': "signup_successful"})
+

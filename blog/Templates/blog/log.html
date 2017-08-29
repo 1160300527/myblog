@@ -15,29 +15,35 @@
     <div id="formb">
         <ul id="sign">
             <li>
-                <input type="button" class="sign" id="signin" value="Sign in" onclick="signin()"/>
+                <input type="button" class="sign" id="in" value="Sign in" onclick="signin()"/>
             </li>
             <li>
-                <input type="button" class="sign" id="signup" value="Sign up" onclick="signup()"/>
+                <input type="button" class="sign" id="up" value="Sign up" onclick="signup()"/>
             </li>
         </ul>
         <br>
-        <form action="" method="post" id="myform">
+        <br>
+        <form action="" method="post">
+            {% csrf_token %}
             <label for="txtname">UserName：</label>
             <input type="text" id="txtname" placeholder="字母和数字为首,不带有空格" class="text" name="name"/>
             <br>
+            <br>
             <label for="txtpass">PassWord：</label>
             <input type="password" id="txtpass" placeholder="数字,大小写字母开头" class="text" name="password"/>
+            <br>
             <br>
             <div class="dis">
                 <label for="Email">E-mail：</label>
                 <input type="text" id="email" placeholder="Enter email" class="text2" name="emaili"/>
                 <br>
+                <br>
                 <label for="phone">Phone：</label>
                 <input type="text" id="phone" placeholder="PhoneNumber:86+" class="text2" name="phone"/>
                 <br>
+                <br>
             </div>
-            <input type="submit" onclick="con()" value="确认" class="bu" id="submit"/>
+            <input type="button" onclick="con()" value="确认" class="bu" id="submit" />
             <input type="reset" value="重置" class="bu" id="reset"/>
         </form>
     </div>

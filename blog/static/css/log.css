@@ -21,7 +21,7 @@ input[type=text],input[type=password]{
 }
 .text,.text2{
 	width:800px;
-	height:35px;
+	height:50px;
 	opacity: 0.8;
 	color: black;
 	position: absolute;
@@ -76,7 +76,7 @@ h1{
 	border:1px solid #808588;
 	color:white;
 	float:left;
-	height:35px;
+	height:50px;
 	width:400px;
 	opacity:0.7;
     border-radius: 3px;
@@ -93,8 +93,9 @@ ul{
 }
 #index{
 	position: absolute;
+	z-index: 99;
 	text-decoration: none;
-	top:8%;
+	top:5%;
 }
 #index:hover{
 	text-decoration: underline;
