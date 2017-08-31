@@ -67,10 +67,6 @@ def log(request):
     return render(request, 'blog/log.html')
 
 
-def log_action(request):
-    return render(request, 'blog/log.html', {'submit': "submit"})
-
-
 def login(request):
     name = request.POST.get('name',None)
     password = request.POST.get('password', None)
