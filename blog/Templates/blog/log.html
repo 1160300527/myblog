@@ -6,7 +6,6 @@
     <title>表单</title>
     <link href="{% static 'css/log.css' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-    <script src="{% static 'js/log.js' %}"></script>
 </head>
 <body>
 <div>
@@ -23,7 +22,7 @@
         </ul>
         <br>
         <br>
-        <form action="" method="post">
+        <form method="post">
             {% csrf_token %}
             <label for="txtname">UserName：</label>
             <input type="text" id="txtname" placeholder="字母和数字为首,不带有空格" class="text" name="name"/>
@@ -43,9 +42,11 @@
                 <br>
                 <br>
             </div>
-            <input type="button" onclick="con()" value="确认" class="bu" id="submit" />
+            <input type="button" onclick="con()" value="确认" class="bu" id="submit"/>
             <input type="reset" value="重置" class="bu" id="reset"/>
         </form>
     </div>
 </div>
 </body>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/log.js' %}"></script>

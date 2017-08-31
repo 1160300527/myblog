@@ -1,7 +1,22 @@
 /**
  * Created by Administrator on 2017/8/26.
  */
-var checked="in";
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var checked = "in";
 function con() {
     var i, flagW = 0, flagw = 0, flagd = 0;
     /*注:document.getElementById().value得到的均为字符串类型，可用parseInt()解析返回整型*/
@@ -47,6 +62,36 @@ function con() {
         alert("密码必须同时包含大小写字母及数字");
         return;
     }
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new window.XMLHttpRequest();
+    }
+    else {
+        request = new ActiveObject("Microsoft.XMLHTTP");
+    }
+    if (checked === "in") {
+        var csrftoken = getCookie('csrftoken');
+        var information = 'successful';
+        request.open("POST", "/index/log/login/", true);
+        request.setRequestHeader('X-CSRFToken', csrftoken);
+        request.send("name=5" + thisname + "&password=" + thispass);
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                information = request.responseText;
+                alert(information);
+                if (information === "successful") {
+                    confirm("登录成功");
+                    window.location.href = ('/index/');
+                }
+                else if(information ==="name_none"){
+                    alert("该用户不存在");
+                }
+                else if(information === "password_wrong"){
+                    alert("密码错误");
+                }
+            }
+        };
+    }
     if (checked === "up") {
         var thisemail = new Array(64);
         thisemail = document.getElementById("email").value;
@@ -80,7 +125,7 @@ function signin() {
     var sign2 = document.getElementById("up");
     sign2.style.background = "#3b474f";
     sign1.style.background = "#2C3A46";
-    checked="in";
+    checked = "in";
 }
 function signup() {
     var form2 = document.getElementsByClassName("dis");
@@ -91,5 +136,5 @@ function signup() {
     var sign2 = document.getElementById("up");
     sign1.style.background = "#3b474f";
     sign2.style.background = "#2C3A46";
-    checked="up";
+    checked = "up";
 }

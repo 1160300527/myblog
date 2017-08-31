@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password
 from . import models
 import datetime
+from django.http import HttpResponse
+
 
 # Create your views here.
 
@@ -70,14 +72,17 @@ def log_action(request):
 
 
 def login(request):
-
-    name = request.POST.get('name', None)
+    name = request.POST.get('name',None)
     password = request.POST.get('password', None)
     user = models.User.objects.filter(name=name)
-    if check_password(password, user[0].password):
-        return render(request, 'blog/alert.html', {'alert': "signup_successful"})
-    else:
-        return render(request, 'blog/alert.html',{'alert': "signup_failing"})
+    if models.User.objects.filter(name=name):
+        if check_password(password, user[0].password):
+            request.session["log"] = "successful"
+            return HttpResponse("successful")
+        else:
+            request.session["log"] = "password_wrong"
+    request.session["log"] = "default"
+    return HttpResponse(name)
 
 
 def signup(request):
@@ -87,4 +92,3 @@ def signup(request):
     phone = request.POST.get('phone', None)
     models.User.objects.create(name=name, password=password, email=email, phone=phone)
     return render(request, 'blog/alert.html', {'alert': "signup_successful"})
-
