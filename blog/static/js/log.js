@@ -1,21 +1,6 @@
 /**
  * Created by Administrator on 2017/8/26.
  */
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
 var checked = "in";
 function con() {
     var i, flagW = 0, flagw = 0, flagd = 0;
@@ -70,15 +55,14 @@ function con() {
         request = new ActiveObject("Microsoft.XMLHTTP");
     }
     if (checked === "in") {
-        var csrftoken = getCookie('csrftoken');
-        var information = 'successful';
-        request.open("POST", "/index/log/login/", true);
-        request.setRequestHeader('X-CSRFToken', csrftoken);
-        request.send("name=5" + thisname + "&password=" + thispass);
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                information = request.responseText;
-                alert(information);
+        $.ajax({
+            type:"POST",
+            url:"/index/log/login/",
+            data:{
+                name:thisname,
+                password:thispass
+            },
+            success:function (information) {
                 if (information === "successful") {
                     confirm("登录成功");
                     window.location.href = ('/index/');
@@ -89,8 +73,11 @@ function con() {
                 else if(information === "password_wrong"){
                     alert("密码错误");
                 }
+            },
+            error:function () {
+                alert("出现错误");
             }
-        };
+        });
     }
     if (checked === "up") {
         var thisemail = new Array(64);
@@ -111,9 +98,37 @@ function con() {
                 return;
             }
         }
-    }
-    else {
-
+        $.ajax({
+            type:"POST",
+            url:"/index/log/signup/",
+            data:{
+                name:thisname,
+                password:thispass,
+                email:thisemail,
+                phone:thisphone
+            },
+            success:function (information) {
+                if(information ==="successful"){
+                    confirm("注册成功");
+                    window.location.href=('/index/');
+                }
+                else if(information === "name_repeat"){
+                    alert("该名称已存在");
+                }
+                else if (information ==="email_repeat"){
+                    alert("邮箱地址已注册");
+                }
+                else if (information ==="phone_repeat"){
+                    alert("该电话号码已注册");
+                }
+                else {
+                    alert("asdf");
+                }
+            },
+            error:function () {
+                alert("Wrong");
+            }
+        })
     }
 }
 function signin() {

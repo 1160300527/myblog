@@ -49,4 +49,7 @@
 </div>
 </body>
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script type="text/JavaScript">
+    $.ajaxSetup({headers: {"X-CSRFToken": '{{ csrf_token }}'}});
+</script>
 <script src="{% static 'js/log.js' %}"></script>

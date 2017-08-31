@@ -80,9 +80,10 @@ def login(request):
             request.session["log"] = "successful"
             return HttpResponse("successful")
         else:
-            request.session["log"] = "password_wrong"
+            request.session["log"] = "default"
+            return HttpResponse("password_wrong")
     request.session["log"] = "default"
-    return HttpResponse(name)
+    return HttpResponse("name_none")
 
 
 def signup(request):
@@ -90,5 +91,12 @@ def signup(request):
     password = make_password(request.POST.get('password', None), None, 'pbkdf2_sha256')
     email = request.POST.get('email', None)
     phone = request.POST.get('phone', None)
-    models.User.objects.create(name=name, password=password, email=email, phone=phone)
-    return render(request, 'blog/alert.html', {'alert': "signup_successful"})
+    if models.User.objects.filter(name=name):
+        return HttpResponse("name_repeat")
+    elif models.User.objects.filter(email=email):
+        return HttpResponse("email_repeat")
+    elif models.User.objects.filter(phone=phone):
+        return HttpResponse("phone_repeat")
+    else:
+        models.User.objects.create(name=name, password=password, email=email, phone=phone)
+        return HttpResponse("successful")
