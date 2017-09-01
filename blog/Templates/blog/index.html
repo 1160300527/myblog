@@ -4,13 +4,23 @@
     {% load staticfiles %}
     <meta charset="UTF-8">
     <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static "dist/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css"/>
     <title>Title</title>
 </head>
 <body>
-<a href="{% url 'blog:log' %}">登录或注册</a>
+<div id="sign">
+        <p id="user"></p>
+        <a href="{% url 'blog:log' %}" id="log">登录或注册</a>
+        <a href="" onclick="logout()" id="signup">退出登录</a>
+    </div>
+<p id="user"></p>
+<div class="text-center">
+<label id="search_label">查找文章
+<input type="text" id="title"/>
+</label>
+<button type="button" onclick="article_search()" id="search">查找</button>
 <table>
     <caption>文章列表</caption>
-    <a href="{% url 'blog:edt' 0 %}">添加新文章</a>
     <tbody>
     <tr>
         <th>Title</th>
@@ -24,5 +34,12 @@
     </tbody>
     {% endfor %}
 </table>
+<button type="button" class="btn btn-default" onclick="new_article(0)" >添加新文章</button>
+</div>
 </body>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script type="text/JavaScript">
+    $.ajaxSetup({headers: {"X-CSRFToken": '{{ csrf_token }}'}});
+</script>
+<script src="{% static 'js/index.js' %}"></script>
 </html>

@@ -24,10 +24,24 @@ body{
 #index{
     width: 20%;
     font-size: large;
-    color: #818a97;
+    color: #808588;
+}
+#sign{
+    float: right;
+    position: relative;
+    right:5%;
+}
+#log,#signup{
+    width: 20%;
+    font-size: large;
+    color: #3d4041;
 }
 .button{
     position: relative;
+}
+#user{
+    color: #3d4041;
+    font-size: large;
 }
 #time{
     color: #9bb49c;

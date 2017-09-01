@@ -10,14 +10,21 @@
 <body>
 <div>
     <a href="{% url 'blog:index' %}" id="index">返回博客首页</a>
+    <div id="sign">
+        <p id="user"></p>
+        <a href="{% url 'blog:log' %}" id="log">登录或注册</a>
+        <a href="" onclick="logout()" id="signup">退出登录</a>
+    </div>
     <h1 id="article_title" class="text-center">{{ article.title }}</h1>
     <textarea cols="120" rows="25" id="article_content" readonly>{{ article.content }}</textarea>
 </div>
 <div class="text-center">
     <p id="time">提交时间：{{ article.time }}</p>
-    <input type="button" id="change" onclick="change({{ article.id }})" class="btn btn-default button" value="修改此文章"/>
+    <input type="button" id="change" onclick="new_article({{ article.id }})" class="btn btn-default button"
+           value="修改此文章"/>
     <input type="button" id="delete" onclick="remove({{ article.id }})" class="btn btn-default button" value="删除此文章"/>
 </div>
 </body>
 <script src="{% static 'js/article_page.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 </html>

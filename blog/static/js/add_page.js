@@ -7,7 +7,7 @@ if ( warning=== "warning") {
     warning="yes"
     window.location.href=('/index/edt/'+document.getElementById("id").value+'/');
 }
-else if(warning=="yes"){
+else if(warning==="yes"){
     Date.prototype.Format = function (fmt) { //author: meizz
         var o = {
             "M+": this.getMonth() + 1,         //月份

@@ -2,3 +2,42 @@ body{
     background: url("img/add_img.jpg"),no-repeat,fixed;
     background-size: cover;
 }
+a{
+  text-decoration: none;
+}
+#sign{
+    float: right;
+    position: relative;
+    right:5%;
+}
+#log,#signup{
+    width: 20%;
+    font-size: large;
+    color: #3d4041;
+}
+#user{
+    color: #3d4041;
+    font-size: large;
+}
+#search_label{
+    font-size: large;
+    color: #818a97;
+    font-weight: normal;
+}
+#title{
+    color: black;
+    border-radius: 7px;
+    border: 1px solid #242f33;
+    height:35px
+}
+#search{
+    border-radius: 4px;
+    border: 1px solid #242f33;
+    width: 5%;
+    height: 35px;
+    position: relative;
+    bottom: 1px;
+}
+#title:focus,#search:active{
+    border: 1px solid #66b8ed;
+}

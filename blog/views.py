@@ -74,6 +74,7 @@ def login(request):
     if models.User.objects.filter(name=name):
         if check_password(password, user[0].password):
             request.session["log"] = "successful"
+            request.session["user"] = name
             return HttpResponse("successful")
         else:
             request.session["log"] = "default"
@@ -96,3 +97,28 @@ def signup(request):
     else:
         models.User.objects.create(name=name, password=password, email=email, phone=phone)
         return HttpResponse("successful")
+
+
+def session_get(request):
+    value = request.session.get("log", default="default")
+    if value == "default":
+        return HttpResponse("default")
+    else:
+        return HttpResponse(request.session.get("user", default=None))
+
+
+def out(request):
+    if request.session.get("log",None):
+        del request.session["log"]
+        del request.session["user"]
+        return HttpResponse("successful")
+    else:
+        return HttpResponse("default")
+
+
+def search(request):
+    title = request.POST.get("title", None)
+    if models.Article.objects.filter(title=title):
+        return HttpResponse(models.Article.objects.get(title=title).id)
+    else:
+        return HttpResponse("")
