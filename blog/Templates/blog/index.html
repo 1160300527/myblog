@@ -9,32 +9,35 @@
 </head>
 <body>
 <div id="sign">
-        <p id="user"></p>
-        <a href="{% url 'blog:log' %}" id="log">登录或注册</a>
-        <a href="" onclick="logout()" id="signup">退出登录</a>
-    </div>
+    <p id="user"></p>
+    <a href="{% url 'blog:log' %}" id="log">登录或注册</a>
+    <a href="" onclick="logout()" id="signup">退出登录</a>
+</div>
 <p id="user"></p>
-<div class="text-center">
-<label id="search_label">查找文章
-<input type="text" id="title"/>
-</label>
-<button type="button" onclick="article_search()" id="search">查找</button>
-<table>
-    <caption>文章列表</caption>
-    <tbody>
-    <tr>
-        <th>Title</th>
-        <th>提交时间</th>
-    </tr>
-    {% for article in articles %}
-    <tr>
-        <td><a href="{% url 'blog:article_page' article_id=article.id  %}">{{ article.title }}</a></td>
-        <td>{{ article.time }}</td>
-    </tr>
-    </tbody>
-    {% endfor %}
-</table>
-<button type="button" class="btn btn-default" onclick="new_article(0)" >添加新文章</button>
+<div class="text-center" style="width: 100%">
+    <label id="search_label">查找文章
+        <input type="text" id="title"/>
+    </label>
+    <button type="button" onclick="article_search()" id="search" class="btn btn-default">查找</button>
+    <div id="articles">
+        <table>
+            <caption class="text-center" id="top">文章列表</caption>
+            <tbody>
+            <tr>
+                <td class="article">Title</td>
+                <td class="time">提交时间</td>
+            </tr>
+            {% for article in articles %}
+                <tr>
+                    <td class="article"><a
+                            href="{% url 'blog:article_page' article_id=article.id %}">{{ article.title }}</a></td>
+                    <td class="time">{{ article.time }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-default" onclick="new_article(0)" id="new">添加新文章</button>
 </div>
 </body>
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>

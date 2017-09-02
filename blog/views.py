@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from . import models
 import datetime
 from django.http import HttpResponse
+import re
 
 
 # Create your views here.
@@ -32,6 +33,14 @@ def edt_action(request):
     content = request.POST.get('content', 'CONTENT')
     time = request.POST.get('time', 'TIME')
     article_id = request.POST.get('article_id', '0')
+    patten = re.compile(r'\S')
+    if not patten.match(title) or not patten.match(content):
+        alert = "blank"
+        if str(article_id) == '0':
+            return render(request, 'blog/add_page.html', {'Alert': alert})
+        else:
+            return render(request, 'blog/add_page.html',
+                          {'Alert': alert, 'article': models.Article.objects.get(pk=article_id)})
     try:
         article = models.Article.objects.get(title=title)
         exist = True

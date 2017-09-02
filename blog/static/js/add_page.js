@@ -1,10 +1,18 @@
 /**
  * Created by Administrator on 2017/8/25.
  */
-var warning=document.getElementById("warning").value
+if(document.getElementById("id").value.toString()!=="0"){
+    document.getElementById("Time").style.display= "table";
+}
+var warning=document.getElementById("warning").value;
 if ( warning=== "warning") {
     alert("该题目已存在");
-    warning="yes"
+    warning="yes";
+    window.location.href=('/index/edt/'+document.getElementById("id").value+'/');
+}
+else if(warning === "blank"){
+    alert("题目及内容不能为空！");
+    warning="yes";
     window.location.href=('/index/edt/'+document.getElementById("id").value+'/');
 }
 else if(warning==="yes"){
