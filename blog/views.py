@@ -10,16 +10,19 @@ import re
 
 
 def index(request):
+    request.session.set_expiry(0)
     articles = models.Article.objects.all()
     return render(request, 'blog/index.html', {'articles': articles})
 
 
 def article_page(request, article_id):
+    request.session.set_expiry(0)
     article = models.Article.objects.get(pk=article_id)
     return render(request, 'blog/article_page.html', {'article': article})
 
 
 def article_change(request, article_id):
+    request.session.set_expiry(0)
     if str(article_id) == '0':
         return render(request, 'blog/add_page.html')
     else:
@@ -28,6 +31,7 @@ def article_change(request, article_id):
 
 
 def edt_action(request):
+    request.session.set_expiry(0)
     alert = "yes"
     title = request.POST.get('title', 'TITLE')
     content = request.POST.get('content', 'CONTENT')
@@ -68,15 +72,18 @@ def edt_action(request):
 
 
 def delete(request, article_id):
+    request.session.set_expiry(0)
     models.Article.objects.filter(pk=article_id).delete()
     return redirect('/index/')
 
 
 def log(request):
+    request.session.set_expiry(0)
     return render(request, 'blog/log.html')
 
 
 def login(request):
+    request.session.set_expiry(0)
     name = request.POST.get('name',None)
     password = request.POST.get('password', None)
     user = models.User.objects.filter(name=name)
@@ -93,6 +100,7 @@ def login(request):
 
 
 def signup(request):
+    request.session.set_expiry(0)
     name = request.POST.get('name', None)
     password = make_password(request.POST.get('password', None), None, 'pbkdf2_sha256')
     email = request.POST.get('email', None)

@@ -1,19 +1,19 @@
 /**
  * Created by Administrator on 2017/8/26.
  */
-var checked = "in";
+let checked = "in";
 function con() {
-    var i, flagW = 0, flagw = 0, flagd = 0;
+    let i, flagW = 0, flagw = 0, flagd = 0;
     /*注:document.getElementById().value得到的均为字符串类型，可用parseInt()解析返回整型*/
-    var thisname = new Array(32);
+    let thisname = new Array(32);
     thisname = document.getElementById("txtname").value;
-    var thispass = new Array(32);
+    let thispass = new Array(32);
     thispass = document.getElementById("txtpass").value;
     if (!thisname.length) {
         alert("用户名不得为空，请重新输入");
         return;
     }
-    var fn = thisname[0];
+    let fn = thisname[0];
     if (!((fn >= 'a' && fn <= 'z') || (fn >= 'A' && fn <= 'Z') || (fn >= '0' && fn <= '9'))) {
         alert("用户名格式错误，请重新输入");
         return;
@@ -64,7 +64,7 @@ function con() {
             },
             success:function (information) {
                 if (information === "successful") {
-                    confirm("登录成功");
+                    alert("登录成功");
                     window.location.href = ('/index/');
                 }
                 else if(information ==="name_none"){
